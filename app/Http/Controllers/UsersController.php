@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Intervention\Image\ImageManager;
+use App\User;
 use Image;
 
 
@@ -21,6 +22,11 @@ class UsersController extends Controller
     public function index()
     {
         //
+
+          $users = User::all();
+          return view('users.index')
+              ->with('users', $users);
+
     }
 
     public function profile(){
@@ -71,9 +77,11 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
         //
+        $user = User::find($user->id);
+        return view('users.show', ['user'=>$user]);
     }
 
     /**

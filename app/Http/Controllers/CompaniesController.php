@@ -16,7 +16,12 @@ class CompaniesController extends Controller
     public function index()
     {
         //
-        if (Auth::check()) {
+        if (Auth::user()->role_id < 3) {
+          $companies = Company::all();
+          return view('companies.index')
+              ->with('companies', $companies);
+        }
+        elseif (Auth::check()) {
           // code...
           $companies = Company::where('user_id',Auth::user()->id)->get();
           return view('companies.index', ['companies'=>$companies]);

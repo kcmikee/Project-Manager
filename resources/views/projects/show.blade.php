@@ -103,10 +103,10 @@
         <input type="hidden" name="commentable_id" value="{{$project->id}}">
 
         <fieldset class="form-group">
-          <h2 class="text-info text-center">MAKECOMMENTS</h2>
+          <h2 class="text-info text-center">MAKE COMMENTS</h2>
           <hr>
           <label for="comment-content">Comments</label>
-          <textarea name="body" class="form-control autosize-target text-left" rows="3" spellcheck="false" id="comment-content" placeholder="Enter description"></textarea>          <label for="comment-content">Proof of work(url/photo)</label>
+          <textarea name="body" class="form-control autosize-target text-left" rows="3" spellcheck="false" id="comment-content" placeholder="Enter description"></textarea>
 
         </fieldset>
 

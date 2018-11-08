@@ -95,9 +95,9 @@
     </a>
 
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-      <a class="dropdown-item" href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i> All Companies</a>
-      <a class="dropdown-item" href="{{ route('projects.index') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> All Projects</a>
-      <a class="dropdown-item" href="{{ route('tasks.index') }}"><i class="fa fa-tasks" aria-hidden="true"></i> All Tasks</a>
+      <!-- <a class="dropdown-item" href="{{ route('companies.index') }}"><i class="fa fa-building" aria-hidden="true"></i> All Companies</a> -->
+      <!-- <a class="dropdown-item" href="{{ route('projects.index') }}"><i class="fa fa-briefcase" aria-hidden="true"></i> All Projects</a> -->
+      <!-- <a class="dropdown-item" href="{{ route('tasks.index') }}"><i class="fa fa-tasks" aria-hidden="true"></i> All Tasks</a> -->
       <a class="dropdown-item" href="{{ route('users.index') }}"><i class="fa fa-user" aria-hidden="true"></i> All Users</a>
       <a class="dropdown-item" href="{{ route('roles.index') }}"><i class="fa fa-envelope" aria-hidden="true"></i> All Roles</a>
 

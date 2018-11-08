@@ -19,7 +19,12 @@ class ProjectsController extends Controller
   public function index()
   {
       //
-      if (Auth::check()) {
+      if (Auth::user()->role_id < 3) {
+        $projects = Project::all();
+        return view('projects.index')
+            ->with('projects', $projects);
+      }
+      elseif (Auth::check()) {
         // code...
         $projects = Project::where('user_id',Auth::user()->id)->get();
         return view('projects.index', ['projects'=>$projects]);
@@ -37,12 +42,18 @@ class ProjectsController extends Controller
     if(Auth::user()->id == $project->user_id){
 
       $user = User::where('email', $request->input('email'))->first();
+      //if the user doesnt exist, it should show that error msg
+      if( $user === null){
+        return redirect()->route('projects.show' , ['project'=>$project->id])
+        ->with('errors' ,  $request->input('email').' doesn\'t exist');
+      }
+
       $projectuser = ProjectUser::where('user_id',$user->id)
                                 ->where('project_id',$project->id)
                                   ->first();
       if ($projectuser) {
         return redirect()->route('projects.show' , ['project'=>$project->id])
-        ->with('success' ,  $request->input('email').' is already a member of this project');
+        ->with('success' ,  $request->input('email').' already exist in the project ');
       }
 
       if($user && $project){
@@ -53,7 +64,7 @@ class ProjectsController extends Controller
       }
     }
     return redirect()->route('projects.show' , ['project'=>$project->id])
-    ->with('error' , 'User failed to add to project');
+    ->with('errors' , 'User failed to add to project');
   }
 
   /**

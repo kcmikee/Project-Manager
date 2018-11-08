@@ -21,7 +21,12 @@ class TasksController extends Controller
   public function index()
   {
       //
-      if (Auth::check()) {
+      if (Auth::user()->role_id < 3) {
+        $tasks = Task::all();
+        return view('tasks.index')
+            ->with('tasks', $tasks);
+      }
+      elseif (Auth::check()) {
         // code...
         $tasks = Task::where('user_id',Auth::user()->id)->get();
         return view('tasks.index', ['tasks'=>$tasks]);
@@ -39,6 +44,12 @@ class TasksController extends Controller
     if(Auth::user()->id == $task->user_id){
 
       $user = User::where('email', $request->input('email'))->first();
+
+      if( $user === null){
+        return redirect()->route('tasks.show' , ['task'=>$task->id])
+        ->with('errors' ,  $request->input('email').' doesn\'t exist');
+      }
+
       $taskuser = TaskUser::where('user_id',$user->id)
                           ->where('task_id',$task->id)
                           ->first();
